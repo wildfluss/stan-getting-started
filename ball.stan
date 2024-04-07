@@ -1,6 +1,3 @@
-import stan
-
-ball_code = """
 data {
   int<lower=1> N;           // Number of bounces to model
   real<lower=0> initial_h;  // Initial height from which the ball is dropped
@@ -23,25 +20,3 @@ generated quantities {
     heights[i] = heights[i-1] * r; // Calculate height after each bounce
   }
 }
-
-"""
-
-ball_data = {
-    "N": 8,
-    "initial_h": 28,
-    "r": 0.15,
-}
-
-posterior = stan.build(
-    ball_code,
-    data=ball_data,
-    random_seed=1,
-)
-
-# fit = posterior.sample(num_chains=4, num_samples=1000)
-
-# eta = fit["eta"]  # array with shape (8, 4000)
-
-# df = fit.to_frame()
-
-# df.to_csv("draws.csv")
