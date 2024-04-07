@@ -1,6 +1,6 @@
 # stan getting started 
 
-This is Stan getting started for my daughter studying her freshman's Theoretical Physics 
+This is Stan getting started for my daughter studying her freshman's Theoretical Physics. Get everything below in [install everything](#install-everything)
 
 Lets use ChatGPT to write our first program for this: write a stan program to model height of the ball boucing back declining with time from some given height.
 
@@ -38,6 +38,21 @@ generated quantities {
 
 ```
 
+# run (generated quantities like this)
+
+Run using CmdStan like this h/t https://cmdstanpy.readthedocs.io/en/stable-0.9.65/generate_quantities.html#example-add-posterior-predictive-checks-to-bernoulli-stan
+
+```bash
+$ python run.py 
+12:53:09 - cmdstanpy - INFO - CmdStan start processing
+chain 1 |████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 00:00 Sampling completed
+chain 2 |████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 00:00 Sampling completed
+chain 3 |████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 00:00 Sampling completed
+chain 4 |████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 00:00 Sampling completed
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+12:53:09 - cmdstanpy - INFO - CmdStan done processing.
+```
+
 # install everything 
 
 This works on M2 Macbook Air , Xcode , command line tools installed , and latest Anaconda 
@@ -69,7 +84,15 @@ and ignore crashtest error
 pip install pandas 
 ```
 
-and also 
+then get CmdStan + CmdStanPy like this (this take a while )
+
+```bash
+conda activate stan-311 && \
+pip install --upgrade cmdstanpy && \
+python -c "import cmdstanpy; cmdstanpy.install_cmdstan()" 
+```
+
+~~and also build CmdStan + CmdStanPy like this (this takes a while )~~
 
 ```bash
 conda activate stan-311 && \
