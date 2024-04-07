@@ -2,6 +2,44 @@
 
 This is Stan getting started for my daughter studying her freshman's Theoretical Physics 
 
+Lets use ChatGPT to write our first program for this: write a stan program to model height of the ball boucing back declining with time from some given height.
+
+![](./chat1.png)
+
+![](./chat2.png)
+
+![](./chat3.png)
+
+here's verbatim output from ChatGPT
+
+```stan
+data {
+  int<lower=1> N;           // Number of bounces to model
+  real<lower=0> initial_h;  // Initial height from which the ball is dropped
+  real<lower=0, upper=1> r; // Coefficient of restitution (percentage of height retained after each bounce)
+}
+
+parameters {
+  // No parameters to estimate in this simple model
+}
+
+model {
+  // The model does not estimate parameters, so this block is empty
+}
+
+generated quantities {
+  real heights[N]; // Height of the ball after each bounce
+  heights[1] = initial_h; // Initial drop height
+  
+  for (i in 2:N) {
+    heights[i] = heights[i-1] * r; // Calculate height after each bounce
+  }
+}
+
+```
+
+# install everything 
+
 This works on M2 Macbook Air , Xcode , command line tools installed , and latest Anaconda 
 
 ```bash
@@ -29,6 +67,17 @@ and ignore crashtest error
 
 ```bash
 pip install pandas 
+```
+
+and also 
+
+```bash
+conda activate stan-311 && \
+pip install --upgrade cmdstanpy && \
+cd && \
+git clone https://github.com/stan-dev/cmdstan.git --recursive && \
+cd cmdstan && \
+
 ```
 
 # how to run stan program 
